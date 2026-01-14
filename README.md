@@ -48,7 +48,7 @@ Developer → GitHub → Jenkins (CI Pipeline)
 ### 1️⃣ Clone Repository
 
 ```
-git clone https://github.com/<your-username>/self-healing-platform.git
+git clone https://github.com/dinshpatil5615/Self-Healing-Platform.git
 cd self-healing-platform
 ```
 
@@ -170,7 +170,6 @@ self-healing-platform/
 
 **Dinesh Patil**
 DevOps Engineer (Fresher)
-LinkedIn: <your-link>
 
 ---
 
