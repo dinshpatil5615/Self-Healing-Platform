@@ -12,7 +12,7 @@ This platform automatically builds, deploys, monitors, and heals applications ru
 
 ## 🏗 Architecture Diagram
 
-
+![Architecture](screenshots/Architecture.png)
 
 ```
 Developer → GitHub → Jenkins (CI Pipeline)
