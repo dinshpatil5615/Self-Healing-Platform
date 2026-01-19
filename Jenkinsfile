@@ -32,6 +32,7 @@ pipeline {
         stage('Update Manifest') {
             steps {
                 sh """
+                  git pull origin main --rebase
                   sed -i "s|image:.*|image: ${DOCKER_IMAGE}|" k8s/deployment.yaml
                   git config user.email "jenkins@example.com"
                   git config user.name "jenkins"
