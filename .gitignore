@@ -1,0 +1,18 @@
+# Terraform
+.terraform/
+terraform.tfstate
+terraform.tfstate.*
+crash.log
+
+# SSH Keys
+*.pem
+*.key
+
+# OS files
+.DS_Store
+
+# Node
+node_modules/
+
+# Env files
+.env
