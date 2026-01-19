@@ -2,7 +2,8 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "dineshpatil0908/self-healing-platform:v1"
+        IMAGE_TAG = "${BUILD_NUMBER}"
+        DOCKER_IMAGE = "dineshpatil0908/self-healing-platform:${IMAGE_TAG}"
         GIT_REPO = "https://github.com/dinshpatil5615/Self-Healing-Platform.git"
     }
 
@@ -21,10 +22,8 @@ pipeline {
                         credentialsId: 'dockerhub-creds',
                         url: 'https://index.docker.io/v1/'
                     ) {
-                        sh """
-                          docker build -t ${DOCKER_IMAGE} .
-                          docker push ${DOCKER_IMAGE}
-                        """
+                        sh "docker build -t ${DOCKER_IMAGE} ."
+                        sh "docker push ${DOCKER_IMAGE}"
                     }
                 }
             }
@@ -33,7 +32,7 @@ pipeline {
         stage('Update Manifest') {
             steps {
                 sh """
-                  sed -i 's|image:.*|image: ${DOCKER_IMAGE}|' k8s/deployment.yaml
+                  sed -i "s|image:.*|image: ${DOCKER_IMAGE}|" k8s/deployment.yaml
                   git config user.email "jenkins@example.com"
                   git config user.name "jenkins"
                   git add k8s/deployment.yaml
