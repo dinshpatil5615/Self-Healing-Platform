@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: demo-app
-        image: dineshpatil0908/self-healing-platform:14
+        image: dineshpatil0908/self-healing-platform:15
         ports:
         - containerPort: 80
