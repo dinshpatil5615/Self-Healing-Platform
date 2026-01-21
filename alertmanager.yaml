@@ -1,0 +1,15 @@
+﻿global:
+  resolve_timeout: 5m
+  smtp_smarthost: 'smtp.gmail.com:587'
+  smtp_from: 'dineshpatil5615@gmail.com'
+  smtp_auth_username: 'dineshpatil5615@gmail.com'
+  smtp_auth_password: 'Dinesh@2001'
+
+route:
+  receiver: email-notification
+
+receivers:
+- name: email-notification
+  email_configs:
+  - to: 'dineshpatil5615@gmail.com'
+    send_resolved: true
