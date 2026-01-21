@@ -70,6 +70,7 @@ This creates:
 * EC2 Jenkins Server
 * EKS Cluster with worker nodes
 
+![Running Pods](screenshots/Running_Pods.jpg)
 ---
 
 ### 3️⃣ Setup Jenkins CI Pipeline
@@ -82,6 +83,8 @@ This creates:
   * Create Docker image
   * Push image to DockerHub
 
+![Jenkins](screenshots/jenkins_pipeline.jpg)
+![Dockerhub](dockerhub.jpg)
 ---
 
 ### 4️⃣ Setup ArgoCD (GitOps)
@@ -95,12 +98,14 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 * Connect GitHub repo
 * Sync application manifests
 
+![Argocd](screenshots/Argocd.jpg)
 ---
 
 ### 5️⃣ Deploy Application on Kubernetes
 
 * ArgoCD automatically deploys manifests
 * Kubernetes manages pods and services
+
 
 ---
 
@@ -114,6 +119,9 @@ helm install monitoring prometheus-community/kube-prometheus-stack
 * Prometheus to monitor Kubernetes pods
 * Alert rule for Pod Restart detection
 * Alertmanager to send Email notifications
+
+![Argocd](screenshots/prometheus_rules.jpg)
+![Argocd](screenshots/Alerting.jpg)
 
 📊 Self-Healing Workflow
 1. Application pod is running
