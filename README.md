@@ -83,8 +83,8 @@ This creates:
   * Create Docker image
   * Push image to DockerHub
 
-![Jenkins](screenshots/jenkins_pipeline.jpg)
 ![Dockerhub](screenshots/dockerhub.jpg)
+![Jenkins](screenshots/jenkins_pipeline.jpg)
 ---
 
 ### 4️⃣ Setup ArgoCD (GitOps)
