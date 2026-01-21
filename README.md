@@ -21,25 +21,28 @@ Developer → GitHub → Jenkins (CI Pipeline)
            ↓
  ArgoCD (GitOps) → Kubernetes (EKS)
            ↓
- Prometheus + Grafana (Monitoring)
+ Prometheus Monitoring + Alertmanager
            ↓
- Kubernetes Self-Healing + Auto Scaling
+   Email Alert Notification
+           ↓
+ Kubernetes Self-Healing (Pod Recreation)
 ```
 
 ---
 
 ## ⚙️ Tools & Technologies Used
 
-| Category               | Tools                        |
-| ---------------------- | ---------------------------- |
-| Cloud                  | AWS (VPC, EC2, EKS, IAM, S3) |
-| Infrastructure as Code | Terraform                    |
-| CI/CD                  | Jenkins, GitHub              |
-| Containerization       | Docker, DockerHub            |
-| Kubernetes             | EKS, kubectl                 |
-| GitOps                 | ArgoCD                       |
-| Monitoring             | Prometheus, Grafana          |
-| Alerting               | CloudWatch (optional)        |
+| Category               | Tools                                   |
+| ---------------------- | --------------------------------------  |
+| Cloud                  | AWS (VPC, EC2, EKS, IAM, S3)            |
+| Infrastructure as Code | Terraform                               |
+| CI/CD                  | Jenkins, GitHub                         |
+| Containerization       | Docker, DockerHub                       |
+| Kubernetes             | EKS, kubectl                            |
+| GitOps                 | ArgoCD                                  |
+| Monitoring             | Prometheus                              |
+| Alerting               | Alertmanager (Email Notifications)      |
+| Package Manager        | Helm                                    |
 
 ---
 
@@ -101,16 +104,23 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 
 ---
 
-### 6️⃣ Setup Monitoring
+### 6️⃣ Setup MonitorinG
 
 ```
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm install monitoring prometheus-community/kube-prometheus-stack
 ```
 
-* Access Grafana Dashboard
-* Monitor cluster and application metrics
+* Prometheus to monitor Kubernetes pods
+* Alert rule for Pod Restart detection
+* Alertmanager to send Email notifications
 
+📊 Self-Healing Workflow
+1. Application pod is running
+2. Pod is manually deleted (failure simulation)
+3. Kubernetes recreates the pod automatically
+4. Prometheus detects pod restart
+5. Alertmanager sends email notification
 ---
 
 ## 🔐 Security Approach
@@ -119,15 +129,7 @@ helm install monitoring prometheus-community/kube-prometheus-stack
 * Security Groups restrict inbound ports (22, 8080, 3000)
 * Kubernetes RBAC enabled
 * No hardcoded secrets (use Kubernetes Secrets)
-
----
-
-## 📊 Monitoring & Self-Healing
-
-* Prometheus collects cluster and application metrics
-* Grafana visualizes metrics
-* Kubernetes automatically restarts failed pods
-* Node Auto Scaling replaces unhealthy nodes
+* Secrets managed via Kubernetes Secrets
 
 ---
 
@@ -135,9 +137,11 @@ helm install monitoring prometheus-community/kube-prometheus-stack
 
 * Infrastructure automation using Terraform
 * CI/CD with Jenkins
+* Docker image build & push automation
 * GitOps using ArgoCD
 * Kubernetes orchestration and self-healing
-* Monitoring with Prometheus & Grafana
+* Monitoring with Prometheus
+* Alertmanager email alert integration
 * Real-world troubleshooting experience
 
 ---
@@ -150,7 +154,7 @@ self-healing-platform/
 ├── terraform/          # Terraform IaC files
 ├── jenkins/            # Jenkins pipeline files
 ├── kubernetes/         # K8s manifests
-├── helm/               # Helm values
+├── argocd/             # GitOps application config
 ├── monitoring/         # Prometheus configs
 └── README.md
 ```
@@ -159,10 +163,11 @@ self-healing-platform/
 
 ## 💡 Future Enhancements
 
-* Add Slack / Email alert notifications
-* Implement Blue-Green deployments
+* Add Slack / WhatsApp alert notifications
+* Add Horizontal Pod Autoscaler (HPA)
+* Implement Blue-Green or Canary deployments
 * Add Terraform remote state
-* Integrate AWS ALB Ingress Controller
+* Add Grafana dashboards for visualization
 
 ---
 
