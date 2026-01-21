@@ -84,7 +84,7 @@ This creates:
   * Push image to DockerHub
 
 ![Jenkins](screenshots/jenkins_pipeline.jpg)
-![Dockerhub](dockerhub.jpg)
+![Dockerhub](screenshots/dockerhub.jpg)
 ---
 
 ### 4️⃣ Setup ArgoCD (GitOps)
@@ -120,8 +120,8 @@ helm install monitoring prometheus-community/kube-prometheus-stack
 * Alert rule for Pod Restart detection
 * Alertmanager to send Email notifications
 
-![Argocd](screenshots/prometheus_rules.jpg)
 ![Argocd](screenshots/Alerting.jpg)
+![Argocd](screenshots/prometheus_rules.jpg)
 
 📊 Self-Healing Workflow
 1. Application pod is running
