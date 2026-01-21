@@ -104,7 +104,7 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 
 ---
 
-### 6️⃣ Setup MonitorinG
+### 6️⃣ Setup Monitoring
 
 ```
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
